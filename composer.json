@@ -2,6 +2,7 @@
     "name": "digitalgoal/digitalgoal-sms-client",
     "description": "SMS Client for DigitalGoal SMS Middlewre",
     "type": "library",
+    "version": "1",
     "require": {
         "giggsey/libphonenumber-for-php": "8.x-dev"
     },
