@@ -2,6 +2,10 @@
 
 namespace DigitalGoalSmsClient\DigitalGoalSmsClient;
 
+use DigitalGoalSmsClient\DigitalGoalSmsClient\Exception\ApiExeption;
+use DigitalGoalSmsClient\DigitalGoalSmsClient\Exception\AuthExeption;
+use DigitalGoalSmsClient\DigitalGoalSmsClient\Exception\SendExeption;
+
 class DigitalGoalSmsClient
 {
 
@@ -135,7 +139,7 @@ class DigitalGoalSmsClient
 
     /**
      * @return mixed
-     * @throws \Exception\AuthExeption
+     * @throws AuthExeption
      */
     public function getToken()
     {
@@ -171,7 +175,7 @@ class DigitalGoalSmsClient
             !isset($response['items'][0]) ||
             !isset($response['items'][0]['token_hash'])
         ) {
-            throw new \Exception\AuthExeption();
+            throw new AuthExeption();
         }
 
         return $response['items'][0]['token_hash'];
@@ -180,7 +184,7 @@ class DigitalGoalSmsClient
 
     /**
      * @return mixed
-     * @throws \Exception\SendExeption
+     * @throws SendExeption
      */
     public function sendToMiddleware()
     {
@@ -215,7 +219,7 @@ class DigitalGoalSmsClient
             !isset($response['items'][0]) ||
             !isset($response['items'][0]['sms_id'])
         ) {
-            throw new \Exception\SendExeption();
+            throw new SendExeption();
         }
 
         return $response['items'][0]['sms_id'];
@@ -224,8 +228,7 @@ class DigitalGoalSmsClient
 
     /**
      * @return mixed
-     * @throws \Exception\ApiExeption
-     * @throws \Exception\AuthExeption
+     * @throws ApiExeption
      */
     public function getSms()
     {
@@ -252,7 +255,7 @@ class DigitalGoalSmsClient
             !isset($response['items']) ||
             !isset($response['items'][0])
         ) {
-            throw new \Exception\ApiExeption('could not get sms');
+            throw new ApiExeption('could not get sms');
         }
 
         return $response['items'];
@@ -262,8 +265,7 @@ class DigitalGoalSmsClient
     /**
      * @param $middlewareSmsId
      * @return mixed
-     * @throws \Exception\ApiExeption
-     * @throws \Exception\AuthExeption
+     * @throws ApiExeption
      */
     public function getSmsById($middlewareSmsId)
     {
@@ -290,7 +292,7 @@ class DigitalGoalSmsClient
             !isset($response['items']) ||
             !isset($response['items'][0])
         ) {
-            throw new \Exception\ApiExeption('could not get sms');
+            throw new ApiExeption('could not get sms');
         }
 
         return $response['items'][0];
@@ -299,9 +301,9 @@ class DigitalGoalSmsClient
 
     /**
      * @param $middlewareSmsId
+     * @param $smsStatus
      * @return mixed
-     * @throws \Exception\ApiExeption
-     * @throws \Exception\AuthExeption
+     * @throws ApiExeption
      */
     public function updateSmsById($middlewareSmsId, $smsStatus)
     {
@@ -336,7 +338,7 @@ class DigitalGoalSmsClient
             !isset($response['items']) ||
             !isset($response['items'][0])
         ) {
-            throw new \Exception\ApiExeption('could not get sms');
+            throw new ApiExeption('could not get sms');
         }
 
         return $response['items'][0];
