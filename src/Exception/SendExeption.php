@@ -1,6 +1,6 @@
 <?php
 
-namespace Exception;
+namespace DigitalGoalSmsClient\DigitalGoalSmsClient\Exception;
 
 class SendExeption
     extends \Exception
