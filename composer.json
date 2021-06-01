@@ -11,5 +11,5 @@
             "email": "office@digitalgoal.de"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
