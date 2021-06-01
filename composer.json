@@ -1,0 +1,15 @@
+{
+    "name": "digitalgoal/digitalgoal-sms-client",
+    "description": "SMS Client for DigitalGoal SMS Middlewre",
+    "type": "library",
+    "require": {
+        "giggsey/libphonenumber-for-php": "8.x-dev"
+    },
+    "authors": [
+        {
+            "name": "DigitalGoal",
+            "email": "office@digitalgoal.de"
+        }
+    ],
+    "minimum-stability": "dev"
+}
