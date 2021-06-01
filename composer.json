@@ -11,5 +11,10 @@
             "name": "DigitalGoal",
             "email": "office@digitalgoal.de"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "digitalgoal\\digitalgoal-sms-client\\": "src/"
+        }
+    }
 }
