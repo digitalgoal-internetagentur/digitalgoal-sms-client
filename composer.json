@@ -1,6 +1,6 @@
 {
     "name": "digitalgoal/digitalgoal-sms-client",
-    "description": "SMS Client for DigitalGoal SMS Middlewre",
+    "description": "SMS Client for DigitalGoal SMS Middleware",
     "type": "library",
     "version": "1",
     "require": {

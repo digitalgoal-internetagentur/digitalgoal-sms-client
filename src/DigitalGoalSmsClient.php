@@ -227,7 +227,7 @@ class DigitalGoalSmsClient
      * @throws \Exception\ApiExeption
      * @throws \Exception\AuthExeption
      */
-    public function getSmsStatusById($middlewareSmsId)
+    public function getSmsById($middlewareSmsId)
     {
 
         $opts = [
@@ -235,6 +235,52 @@ class DigitalGoalSmsClient
                 'header' => [
                     'Authorization' => $this->getToken()
                 ],
+            ]
+        ];
+
+
+        $context = stream_context_create($opts);
+        $response = file_get_contents(
+            'https://sms-middleware.digitalgoal.de/sms/' . $middlewareSmsId,
+            false,
+            $context
+        );
+
+        $response = json_decode($response, true);
+
+        if (
+            !isset($response['items']) ||
+            !isset($response['items'][0])
+        ) {
+            throw new \Exception\ApiExeption('could not get sms');
+        }
+
+        return $response['items'][0];
+
+    }
+
+    /**
+     * @param $middlewareSmsId
+     * @return mixed
+     * @throws \Exception\ApiExeption
+     * @throws \Exception\AuthExeption
+     */
+    public function updateSmsById($middlewareSmsId, $smsStatus)
+    {
+
+        $postdata = http_build_query(
+            [
+                'sms_status' => $smsStatus
+            ]
+        );
+
+        $opts = [
+            'https' => [
+                'method' => 'PUT',
+                'header' => [
+                    'Authorization' => $this->getToken()
+                ],
+                'content' => $postdata
             ]
         ];
 
