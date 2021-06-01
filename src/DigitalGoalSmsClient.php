@@ -222,6 +222,43 @@ class DigitalGoalSmsClient
     }
 
     /**
+     * @return mixed
+     * @throws \Exception\ApiExeption
+     * @throws \Exception\AuthExeption
+     */
+    public function getSms()
+    {
+
+        $opts = [
+            'https' => [
+                'header' => [
+                    'Authorization' => $this->getToken()
+                ],
+            ]
+        ];
+
+
+        $context = stream_context_create($opts);
+        $response = file_get_contents(
+            'https://sms-middleware.digitalgoal.de/sms',
+            false,
+            $context
+        );
+
+        $response = json_decode($response, true);
+
+        if (
+            !isset($response['items']) ||
+            !isset($response['items'][0])
+        ) {
+            throw new \Exception\ApiExeption('could not get sms');
+        }
+
+        return $response['items'];
+
+    }
+
+    /**
      * @param $middlewareSmsId
      * @return mixed
      * @throws \Exception\ApiExeption
