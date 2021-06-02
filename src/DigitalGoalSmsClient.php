@@ -30,6 +30,16 @@ class DigitalGoalSmsClient
     private $smsText = '';
 
     /**
+     * @var int
+     */
+    private $smsMandatorId = 0;
+
+    /**
+     * @var string
+     */
+    private $smsMandatorSystem = '';
+
+    /**
      * @var \libphonenumber\PhoneNumberUtil
      */
     private $libPhoneNumber = null;
@@ -120,6 +130,43 @@ class DigitalGoalSmsClient
     }
 
     /**
+     * @return int
+     */
+    public function getSmsMandatorId(): int
+    {
+        return $this->smsMandatorId;
+    }
+
+    /**
+     * @param int $smsMandatorId
+     * @return DigitalGoalSmsClient
+     */
+    public function setSmsMandatorId(int $smsMandatorId): DigitalGoalSmsClient
+    {
+        $this->smsMandatorId = $smsMandatorId;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSmsMandatorSystem(): string
+    {
+        return $this->smsMandatorSystem;
+    }
+
+    /**
+     * @param string $smsMandatorSystem
+     * @return DigitalGoalSmsClient
+     */
+    public function setSmsMandatorSystem(string $smsMandatorSystem): DigitalGoalSmsClient
+    {
+        $this->smsMandatorSystem = $smsMandatorSystem;
+        return $this;
+    }
+
+
+    /**
      * @return \libphonenumber\PhoneNumberUtil
      */
     public function getLibPhoneNumber()
@@ -192,7 +239,9 @@ class DigitalGoalSmsClient
         $postdata = http_build_query(
             [
                 'sms_to' => $this->getSmsNumber(),
-                'sms_text' => $this->getSmsText()
+                'sms_text' => $this->getSmsText(),
+                'sms_mandator_sms_id' => $this->getSmsMandatorId(),
+                'sms_mandator_system' => $this->getSmsMandatorSystem()
             ]
         );
 
@@ -308,26 +357,19 @@ class DigitalGoalSmsClient
     public function updateSmsById($middlewareSmsId, $smsStatus)
     {
 
-        $postdata = http_build_query(
-            [
-                'sms_status' => $smsStatus
-            ]
-        );
-
         $opts = [
             'https' => [
                 'method' => 'PUT',
                 'header' => [
                     'Authorization' => $this->getToken()
-                ],
-                'content' => $postdata
+                ]
             ]
         ];
 
 
         $context = stream_context_create($opts);
         $response = file_get_contents(
-            'https://sms-middleware.digitalgoal.de/sms/' . $middlewareSmsId,
+            'https://sms-middleware.digitalgoal.de/sms/' . $middlewareSmsId . '?sms_status=' . $smsStatus,
             false,
             $context
         );
