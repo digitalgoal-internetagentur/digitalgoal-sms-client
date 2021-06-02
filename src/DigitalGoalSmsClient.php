@@ -252,10 +252,10 @@ class DigitalGoalSmsClient
         $response = json_decode($response, true);
 
         if (
-            !isset($response['items']) ||
-            !isset($response['items'][0])
+            !isset($response['status']) ||
+            $response['status'] !== 'success'
         ) {
-            throw new ApiExeption('could not get sms');
+            throw new ApiExeption('api request failed');
         }
 
         return $response['items'];
@@ -292,7 +292,7 @@ class DigitalGoalSmsClient
             !isset($response['items']) ||
             !isset($response['items'][0])
         ) {
-            throw new ApiExeption('could not get sms');
+            throw new ApiExeption('could not get sms with id ' . $middlewareSmsId);
         }
 
         return $response['items'][0];
@@ -338,7 +338,7 @@ class DigitalGoalSmsClient
             !isset($response['items']) ||
             !isset($response['items'][0])
         ) {
-            throw new ApiExeption('could not get sms');
+            throw new ApiExeption('could not get sms with id ' . $middlewareSmsId);
         }
 
         return $response['items'][0];
