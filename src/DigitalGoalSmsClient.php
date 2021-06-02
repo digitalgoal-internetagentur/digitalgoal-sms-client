@@ -246,7 +246,7 @@ class DigitalGoalSmsClient
         );
 
         $opts = [
-            'https' => [
+            'http' => [
                 'method' => 'POST',
                 'header' => [
                     'Authorization' => $this->getToken()
@@ -283,7 +283,7 @@ class DigitalGoalSmsClient
     {
 
         $opts = [
-            'https' => [
+            'http' => [
                 'header' => [
                     'Authorization' => $this->getToken()
                 ],
@@ -320,7 +320,7 @@ class DigitalGoalSmsClient
     {
 
         $opts = [
-            'https' => [
+            'http' => [
                 'header' => [
                     'Authorization' => $this->getToken()
                 ],
@@ -358,7 +358,7 @@ class DigitalGoalSmsClient
     {
 
         $opts = [
-            'https' => [
+            'http' => [
                 'method' => 'PUT',
                 'header' => [
                     'Authorization' => $this->getToken()
