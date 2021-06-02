@@ -32,6 +32,11 @@ class DigitalGoalSmsClient
     /**
      * @var int
      */
+    private $smsMandatorSmsId = 0;
+
+    /**
+     * @var int
+     */
     private $smsMandatorId = 0;
 
     /**
@@ -128,6 +133,25 @@ class DigitalGoalSmsClient
         $this->smsText = $smsText;
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getSmsMandatorSmsId(): int
+    {
+        return $this->smsMandatorSmsId;
+    }
+
+    /**
+     * @param int $smsMandatorSmsId
+     * @return DigitalGoalSmsClient
+     */
+    public function setSmsMandatorSmsId(int $smsMandatorSmsId): DigitalGoalSmsClient
+    {
+        $this->smsMandatorSmsId = $smsMandatorSmsId;
+        return $this;
+    }
+
 
     /**
      * @return int
@@ -240,7 +264,8 @@ class DigitalGoalSmsClient
             [
                 'sms_to' => $this->getSmsNumber(),
                 'sms_text' => $this->getSmsText(),
-                'sms_mandator_sms_id' => $this->getSmsMandatorId(),
+                'sms_mandator_id' => $this->getSmsMandatorId(),
+                'sms_mandator_sms_id' => $this->getSmsMandatorSmsId(),
                 'sms_mandator_system' => $this->getSmsMandatorSystem()
             ]
         );
