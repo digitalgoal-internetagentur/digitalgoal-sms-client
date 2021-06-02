@@ -55,7 +55,6 @@ class DigitalGoalSmsClient
         $this->setUser($user);
         $this->setPassword($password);
         $this->setLibPhoneNumber(\libphonenumber\PhoneNumberUtil::getInstance());
-
     }
 
     /**
@@ -108,7 +107,7 @@ class DigitalGoalSmsClient
      */
     public function setSmsNumber($smsNumber)
     {
-        $smsNumber = $this->getLibPhoneNumber()->parse($smsNumber);
+        $smsNumber = $this->getLibPhoneNumber()->parse($smsNumber, "DE");
         $this->smsNumber = $this->getLibPhoneNumber()->format(
             $smsNumber,
             \libphonenumber\PhoneNumberFormat::INTERNATIONAL
