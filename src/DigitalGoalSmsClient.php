@@ -281,7 +281,7 @@ class DigitalGoalSmsClient
 
 
         $context = stream_context_create($opts);
-        $response = file_get_contents(
+        $response = @file_get_contents(
             'https://sms-middleware.digitalgoal.de/sms',
             false,
             $context
