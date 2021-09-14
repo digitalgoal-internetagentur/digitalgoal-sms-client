@@ -287,6 +287,12 @@ class DigitalGoalSmsClient
             $context
         );
 
+        try {
+            $response = json_decode($response, true);
+        } catch (SendExeption $e) {
+            return false;
+        }
+
         if (
             !isset($response['items']) ||
             !isset($response['items'][0]) ||
