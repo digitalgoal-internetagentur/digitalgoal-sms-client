@@ -225,7 +225,9 @@ class DigitalGoalSmsClient
             'http' =>
                 [
                     'method' => 'POST',
-                    'header' => 'Content-Type: application/x-www-form-urlencoded',
+                    'header' => [
+                        'Content-Type: application/x-www-form-urlencoded'
+                    ],
                     'content' => $postdata
                 ]
         ];
@@ -273,7 +275,8 @@ class DigitalGoalSmsClient
             'http' => [
                 'method' => 'POST',
                 'header' => [
-                    'Authorization' => $this->getToken()
+                    'Authorization' => $this->getToken(),
+                    'Content-Type: application/x-www-form-urlencoded',
                 ],
                 'content' => $postdata
             ]
@@ -315,7 +318,7 @@ class DigitalGoalSmsClient
         $opts = [
             'http' => [
                 'header' => [
-                    'Authorization' => $this->getToken()
+                    'Authorization' => $this->getToken(),
                 ],
             ]
         ];
